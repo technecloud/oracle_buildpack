@@ -7,12 +7,12 @@
 
 #clonar repositorio do java-buildpack
 git clone https://github.com/cloudfoundry/java-buildpack.git
+cd java-buildpack
 git checkout 8821e85d3
 
 #substituir os arquivos personalizados
-cp config/*.* java-buildpack/config
+cp ../config/*.* config
 
-cd java-buildpack
 
 #instalar o bundler
 if ! gem spec bundler > /dev/null 2>&1; then
