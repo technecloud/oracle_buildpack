@@ -1,9 +1,9 @@
                                                   #!/bin/bash -e
 
-if [ "$#" -lt 2 ]; then
-    echo "Usage: $(basename $0) usuario_cf senha_cf"
-    exit 1
-fi
+#if [ "$#" -lt 2 ]; then
+#    echo "Usage: $(basename $0) usuario_cf senha_cf"
+#    exit 1
+#fi
 
 #clonar repositorio do java-buildpack
 git clone https://github.com/cloudfoundry/java-buildpack.git
@@ -23,7 +23,7 @@ if ! gem spec bundler > /dev/null 2>&1; then
     gem install bundler --no-ri --no-rdoc
     bundle install
   then
-      exit 
+      exit 1
   fi
 
 fi
