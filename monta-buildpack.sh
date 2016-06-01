@@ -12,13 +12,25 @@ git checkout 8821e85d3
 #substituir os arquivos personalizados
 cp config/*.* java-buildpack/config
 
+cd java-buildpack
+
 #instalar o bundler
-bundle install
+if ! gem spec bundler > /dev/null 2>&1; then
+  echo "Gem <name> não está instalada."
+  read -p "Proceder com a instalacao?[y/N] " -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+    gem install bundler --no-ri --no-rdoc
+    bundle install
+  then
+      exit 
+  fi
+
+fi
 
 #empacotar o buildpack
-cd java-buildpack
 bundle exec rake package OFFLINE=true PINNED=true
 
 #logar no cf
-cf api
+#cf api
 #subir buildpack
